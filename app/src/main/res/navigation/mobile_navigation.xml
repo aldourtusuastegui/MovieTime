@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.acsoft.movietime.feature_profile.presentation.most_popular.MostPopularPersonFragment"
+        android:name="com.acsoft.movietime.feature_profile.presentation.most_popular.MostPopularPersonProfileFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_most_popular_person" />
+        tools:layout="@layout/fragment_most_popular_person_profile" />
 
     <fragment
         android:id="@+id/navigation_dashboard"

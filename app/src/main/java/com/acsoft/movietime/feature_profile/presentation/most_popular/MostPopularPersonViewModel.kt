@@ -20,7 +20,12 @@ class MostPopularPersonViewModel @Inject constructor(
 
     fun getMostPopularPerson() {
         viewModelScope.launch {
-            _mostPopularPerson.value = getMostPopularPersonUseCase.invoke()
+            try {
+                _mostPopularPerson.value = Result.Loading
+                _mostPopularPerson.value = getMostPopularPersonUseCase.invoke()
+            } catch (e: Exception) {
+                _mostPopularPerson.value = Result.Failure("An unexpected error occurred: ${e.message}")
+            }
         }
     }
 }
