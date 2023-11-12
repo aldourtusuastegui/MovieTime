@@ -9,4 +9,5 @@ interface MoviesRepository {
 
     suspend fun getRatedMoviesList(page: Int): Response<MovieListResponse>
 
+    suspend fun getRecommendationsMoviesList(page: Int): Response<MovieListResponse>
 }

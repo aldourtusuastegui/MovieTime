@@ -20,4 +20,8 @@ class MoviesRepositoryImpl @Inject constructor(
         return moviesRemoteDataSource.getRatedMoviesList(page)
     }
 
+    override suspend fun getRecommendationsMoviesList(page: Int): Response<MovieListResponse> {
+        return moviesRemoteDataSource.getRecommendationsMoviesList(page)
+    }
+
 }

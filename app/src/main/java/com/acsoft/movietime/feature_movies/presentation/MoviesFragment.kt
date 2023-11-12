@@ -20,11 +20,13 @@ class MoviesFragment : Fragment() {
     private val moviesViewModel: MoviesViewModel by viewModels()
     private lateinit var popularMoviesAdapter: MovieAdapter
     private lateinit var ratedMoviesAdapter: MovieAdapter
+    private lateinit var recommendationsAdapter: MovieAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         popularMoviesAdapter = MovieAdapter()
         ratedMoviesAdapter = MovieAdapter()
+        recommendationsAdapter = MovieAdapter()
     }
 
     override fun onCreateView(
@@ -39,6 +41,7 @@ class MoviesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         fillPopularMovies()
         fillRatedMovies()
+        fillRecommendationsMovies()
     }
 
     private fun fillPopularMovies() {
@@ -73,6 +76,26 @@ class MoviesFragment : Fragment() {
                 }
                 is Result.Success -> {
                     ratedMoviesAdapter.setMovieList(result.data.results ?: listOf())
+                }
+                is Result.Failure -> {
+                    //TODO
+                }
+            }
+        }
+    }
+
+    private fun fillRecommendationsMovies() {
+        moviesViewModel.getRecommendationsMovies()
+        binding.rvRecommendationsMovies.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvRecommendationsMovies.adapter = recommendationsAdapter
+
+        moviesViewModel.recommendationsMoviesList.observe(viewLifecycleOwner) { result ->
+            when(result) {
+                is Result.Loading -> {
+                    //TODO
+                }
+                is Result.Success -> {
+                    recommendationsAdapter.setMovieList(result.data.results ?: listOf())
                 }
                 is Result.Failure -> {
                     //TODO
