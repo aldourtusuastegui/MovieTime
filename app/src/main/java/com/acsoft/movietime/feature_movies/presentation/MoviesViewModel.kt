@@ -7,17 +7,23 @@ import androidx.lifecycle.viewModelScope
 import com.acsoft.movietime.core.Result
 import com.acsoft.movietime.feature_movies.domain.entities.MovieList
 import com.acsoft.movietime.feature_movies.domain.usecase.GetPopularMoviesUseCase
+import com.acsoft.movietime.feature_movies.domain.usecase.GetRatedMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class MoviesViewModel @Inject constructor(
-    private val getPopularMoviesUseCase: GetPopularMoviesUseCase
+    private val getPopularMoviesUseCase: GetPopularMoviesUseCase,
+    private val getRatedMoviesUseCase: GetRatedMoviesUseCase
 ) : ViewModel() {
 
     private val _popularMoviesList = MutableLiveData<Result<MovieList>>()
     val popularMoviesList: LiveData<Result<MovieList>> get() = _popularMoviesList
+
+    private val _ratedMoviesList = MutableLiveData<Result<MovieList>>()
+    val ratedMoviesList: LiveData<Result<MovieList>> get() = _ratedMoviesList
+
 
     fun getPopularMovies() {
         viewModelScope.launch {
@@ -32,4 +38,16 @@ class MoviesViewModel @Inject constructor(
         }
     }
 
+    fun getRatedMovies() {
+        viewModelScope.launch {
+            try {
+                _ratedMoviesList.value = Result.Loading
+                getRatedMoviesUseCase.invoke().collect { result ->
+                    _ratedMoviesList.value = result
+                }
+            } catch (e: Exception) {
+                _ratedMoviesList.value = Result.Failure("An unexpected error occurred: ${e.message}")
+            }
+        }
+    }
 }

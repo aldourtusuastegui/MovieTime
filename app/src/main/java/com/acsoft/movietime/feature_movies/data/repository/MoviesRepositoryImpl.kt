@@ -10,8 +10,14 @@ import javax.inject.Singleton
 @Singleton
 class MoviesRepositoryImpl @Inject constructor(
     private val moviesRemoteDataSource: MoviesRemoteDataSource,
-    ): MoviesRepository {
+) : MoviesRepository {
+
     override suspend fun getPopularMoviesList(page: Int): Response<MovieListResponse> {
         return moviesRemoteDataSource.getPopularMoviesList(page)
     }
+
+    override suspend fun getRatedMoviesList(page: Int): Response<MovieListResponse> {
+        return moviesRemoteDataSource.getRatedMoviesList(page)
+    }
+
 }

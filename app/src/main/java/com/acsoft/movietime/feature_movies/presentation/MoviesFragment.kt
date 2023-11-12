@@ -18,11 +18,13 @@ class MoviesFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val moviesViewModel: MoviesViewModel by viewModels()
-    private lateinit var adapter: MovieAdapter
+    private lateinit var popularMoviesAdapter: MovieAdapter
+    private lateinit var ratedMoviesAdapter: MovieAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        adapter = MovieAdapter()
+        popularMoviesAdapter = MovieAdapter()
+        ratedMoviesAdapter = MovieAdapter()
     }
 
     override fun onCreateView(
@@ -35,19 +37,45 @@ class MoviesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        moviesViewModel.getPopularMovies()
+        fillPopularMovies()
+        fillRatedMovies()
+    }
 
+    private fun fillPopularMovies() {
+        moviesViewModel.getPopularMovies()
         binding.rvPopularMovies.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.rvPopularMovies.adapter = adapter
+        binding.rvPopularMovies.adapter = popularMoviesAdapter
 
         moviesViewModel.popularMoviesList.observe(viewLifecycleOwner) { result ->
             when(result) {
                 is Result.Loading -> {
+                    //TODO
                 }
                 is Result.Success -> {
-                    adapter.setMovieList(result.data.results ?: listOf())
+                    popularMoviesAdapter.setMovieList(result.data.results ?: listOf())
                 }
                 is Result.Failure -> {
+                    //TODO
+                }
+            }
+        }
+    }
+
+    private fun fillRatedMovies() {
+        moviesViewModel.getRatedMovies()
+        binding.rvRatedMovies.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvRatedMovies.adapter = ratedMoviesAdapter
+
+        moviesViewModel.ratedMoviesList.observe(viewLifecycleOwner) { result ->
+            when(result) {
+                is Result.Loading -> {
+                    //TODO
+                }
+                is Result.Success -> {
+                    ratedMoviesAdapter.setMovieList(result.data.results ?: listOf())
+                }
+                is Result.Failure -> {
+                    //TODO
                 }
             }
         }

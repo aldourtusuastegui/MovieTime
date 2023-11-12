@@ -1,7 +1,6 @@
 package com.acsoft.movietime.feature_movies.presentation
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -40,7 +39,7 @@ class MovieAdapter : RecyclerView.Adapter<BaseViewHolder<*>>() {
         BaseViewHolder<Movie>(binding.root) {
         override fun bind(item: Movie) {
             Glide.with(context)
-                .load("https://image.tmdb.org/t/p/w500/${item.posterPath}")
+                .load(AppConstants.IMAGE_URL.plus(item.posterPath))
                 .centerCrop()
                 .into(binding.imgMovie)
         }

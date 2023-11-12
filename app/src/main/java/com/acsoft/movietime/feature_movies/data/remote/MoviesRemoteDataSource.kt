@@ -10,4 +10,8 @@ class MoviesRemoteDataSource @Inject constructor(
     suspend fun getPopularMoviesList(page: Int) : Response<MovieListResponse> {
         return movieApiService.getPopularMoviesList(page = page)
     }
+
+    suspend fun getRatedMoviesList(page: Int) : Response<MovieListResponse> {
+        return movieApiService.getRatedMoviesList(page = page)
+    }
 }
