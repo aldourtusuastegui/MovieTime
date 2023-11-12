@@ -20,10 +20,9 @@ class GetMostPopularPersonUseCase @Inject constructor(
             if (apiResponse.isSuccessful) {
                 val profile = apiResponse.body()?.results?.first()
                 val popularPerson = PopularPersonProfile(
-                    profile?.id,
-                    profile?.name,
-                    profile?.popularity,
-                    profile?.profilePath
+                    name = profile?.name,
+                    popularity = profile?.popularity,
+                    profilePath = profile?.profilePath
                 )
                 emit(Result.Success(popularPerson))
             } else {
@@ -34,10 +33,9 @@ class GetMostPopularPersonUseCase @Inject constructor(
             val profile = localDataResponse.firstOrNull()
             if (profile != null) {
                 val data = PopularPersonProfile(
-                    profile.id,
-                    profile.name,
-                    profile.popularity,
-                    profile.profilePath
+                    name = profile.name,
+                    popularity = profile.popularity,
+                    profilePath = profile.profilePath
                 )
                 emit(Result.Success(data))
             } else {

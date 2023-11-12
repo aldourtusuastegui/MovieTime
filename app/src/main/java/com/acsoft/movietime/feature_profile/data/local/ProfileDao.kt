@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 interface ProfileDao {
 
     @Query("SELECT * FROM ProfileEntity LIMIT 1")
-    fun getMostPopularPersonProfile() : Flow<ProfileEntity?>
+    fun getMostPopularPersonProfile() : Flow<ProfileEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertMostPopularPersonProfile(popularPersonProfile: ProfileEntity)

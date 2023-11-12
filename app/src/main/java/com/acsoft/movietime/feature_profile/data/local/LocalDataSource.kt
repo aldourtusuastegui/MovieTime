@@ -7,7 +7,7 @@ import javax.inject.Inject
 class LocalDataSource @Inject constructor(
     private val profileDao: ProfileDao
 ) {
-    fun getMostPopularPersonProfile() : Flow<ProfileEntity?> {
+    fun getMostPopularPersonProfile() : Flow<ProfileEntity> {
         return profileDao.getMostPopularPersonProfile()
     }
 

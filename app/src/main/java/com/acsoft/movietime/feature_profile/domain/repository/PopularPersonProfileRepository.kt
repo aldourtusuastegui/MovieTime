@@ -9,7 +9,7 @@ import retrofit2.Response
 interface PopularPersonProfileRepository {
     suspend fun getMostPopularPeopleList(): Response<Results>
 
-    suspend fun getMostPopularPersonProfileDb() : Flow<ProfileEntity?>
+    fun getMostPopularPersonProfileDb() : Flow<ProfileEntity?>
 
     suspend fun insertMostPopularPersonProfileDb(popularPersonProfile: PopularPersonProfile)
 }

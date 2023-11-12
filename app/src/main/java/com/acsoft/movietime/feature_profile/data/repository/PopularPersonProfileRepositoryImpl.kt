@@ -20,7 +20,7 @@ class PopularPersonProfileRepositoryImpl @Inject constructor(
         return remoteDataSource.getMostPopularPeopleList()
     }
 
-    override suspend fun getMostPopularPersonProfileDb(): Flow<ProfileEntity?> {
+    override fun getMostPopularPersonProfileDb(): Flow<ProfileEntity> {
         return localDataSource.getMostPopularPersonProfile()
     }
 
