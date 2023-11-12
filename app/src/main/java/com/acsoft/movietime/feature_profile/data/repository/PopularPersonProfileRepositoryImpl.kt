@@ -1,12 +1,12 @@
 package com.acsoft.movietime.feature_profile.data.repository
 
-import androidx.lifecycle.LiveData
 import com.acsoft.movietime.feature_profile.data.local.LocalDataSource
 import com.acsoft.movietime.feature_profile.data.model.ProfileEntity
 import com.acsoft.movietime.feature_profile.data.model.Results
 import com.acsoft.movietime.feature_profile.data.remote.RemoteDataSource
 import com.acsoft.movietime.feature_profile.domain.entities.PopularPersonProfile
 import com.acsoft.movietime.feature_profile.domain.repository.PopularPersonProfileRepository
+import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -20,7 +20,7 @@ class PopularPersonProfileRepositoryImpl @Inject constructor(
         return remoteDataSource.getMostPopularPeopleList()
     }
 
-    override suspend fun getMostPopularPersonProfileDb(): LiveData<ProfileEntity> {
+    override suspend fun getMostPopularPersonProfileDb(): Flow<ProfileEntity?> {
         return localDataSource.getMostPopularPersonProfile()
     }
 

@@ -1,13 +1,13 @@
 package com.acsoft.movietime.feature_profile.data.local
 
-import androidx.lifecycle.LiveData
 import com.acsoft.movietime.feature_profile.data.model.ProfileEntity
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class LocalDataSource @Inject constructor(
     private val profileDao: ProfileDao
 ) {
-    fun getMostPopularPersonProfile() : LiveData<ProfileEntity> {
+    fun getMostPopularPersonProfile() : Flow<ProfileEntity?> {
         return profileDao.getMostPopularPersonProfile()
     }
 

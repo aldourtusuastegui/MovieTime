@@ -1,5 +1,6 @@
 package com.acsoft.movietime.feature_profile.di
 
+import android.app.Application
 import android.content.Context
 import androidx.room.Room
 import com.acsoft.movietime.feature_profile.data.local.LocalDataSource
@@ -22,6 +23,12 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class ProfileModule {
+
+     @Provides
+     @Singleton
+     fun provideContext(application: Application): Context {
+          return application.applicationContext
+     }
 
      //Retrofit
      @Singleton

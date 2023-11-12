@@ -26,7 +26,9 @@ class MostPopularPersonViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 _mostPopularPerson.value = Result.Loading
-                _mostPopularPerson.value = getMostPopularPersonUseCase.invoke()
+                getMostPopularPersonUseCase.invoke().collect { result ->
+                    _mostPopularPerson.value = result
+                }
             } catch (e: Exception) {
                 _mostPopularPerson.value = Result.Failure("An unexpected error occurred: ${e.message}")
             }

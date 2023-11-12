@@ -1,26 +1,48 @@
 package com.acsoft.movietime.feature_profile.domain.usecase
 
+import android.content.Context
 import com.acsoft.movietime.core.Result
 import com.acsoft.movietime.feature_profile.data.repository.PopularPersonProfileRepositoryImpl
 import com.acsoft.movietime.feature_profile.domain.entities.PopularPersonProfile
+import com.acsoft.movietime.utils.NetworkUtils
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class GetMostPopularPersonUseCase @Inject constructor(
+    private val context: Context,
     private val popularPersonProfileRepositoryImpl: PopularPersonProfileRepositoryImpl
 ) {
-    suspend operator fun invoke() : Result<PopularPersonProfile>  {
-        val results = popularPersonProfileRepositoryImpl.getMostPopularPeopleList()
-        return if (results.isSuccessful) {
-            val data = results.body()?.results?.first()
-            val popularPerson = PopularPersonProfile(
-                data?.id,
-                data?.name,
-                data?.popularity,
-                data?.profilePath
-            )
-            Result.Success(popularPerson)
+    fun invoke(): Flow<Result<PopularPersonProfile>> = flow {
+        if (NetworkUtils.isInternetAvailable(context)) {
+            val apiResponse = popularPersonProfileRepositoryImpl.getMostPopularPeopleList()
+            if (apiResponse.isSuccessful) {
+                val profile = apiResponse.body()?.results?.first()
+                val popularPerson = PopularPersonProfile(
+                    profile?.id,
+                    profile?.name,
+                    profile?.popularity,
+                    profile?.profilePath
+                )
+                emit(Result.Success(popularPerson))
+            } else {
+                emit(Result.Failure("it was not possible to obtain remote data"))
+            }
         } else {
-            Result.Failure("we had issues to get popular person")
+            val localDataResponse = popularPersonProfileRepositoryImpl.getMostPopularPersonProfileDb()
+            val profile = localDataResponse.firstOrNull()
+            if (profile != null) {
+                val data = PopularPersonProfile(
+                    profile.id,
+                    profile.name,
+                    profile.popularity,
+                    profile.profilePath
+                )
+                emit(Result.Success(data))
+            } else {
+                emit(Result.Failure("it was not possible to obtain local data"))
+            }
         }
     }
 }
