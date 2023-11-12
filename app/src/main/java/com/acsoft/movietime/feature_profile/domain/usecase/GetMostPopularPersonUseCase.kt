@@ -13,6 +13,7 @@ class GetMostPopularPersonUseCase @Inject constructor(
         return if (results.isSuccessful) {
             val data = results.body()?.results?.first()
             val popularPerson = PopularPersonProfile(
+                data?.id,
                 data?.name,
                 data?.popularity,
                 data?.profilePath

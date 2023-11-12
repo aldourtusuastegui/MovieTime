@@ -1,6 +1,7 @@
 package com.acsoft.movietime.feature_profile.presentation.most_popular
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -40,6 +41,7 @@ class MostPopularPersonProfileFragment : Fragment() {
                 }
                 is Result.Success -> {
                     fillProfile(result.data)
+                    mostPopularPersonViewModel.insertMostPopularPerson(result.data)
                 }
                 is Result.Failure -> {
                 }
@@ -48,6 +50,7 @@ class MostPopularPersonProfileFragment : Fragment() {
     }
 
     private fun fillProfile(popularPersonProfile: PopularPersonProfile) {
+        Log.d("testing","is $popularPersonProfile")
         popularPersonProfile.apply {
             Glide.with(this@MostPopularPersonProfileFragment)
                 .load(AppConstants.IMAGE_URL.plus(this.profilePath))
