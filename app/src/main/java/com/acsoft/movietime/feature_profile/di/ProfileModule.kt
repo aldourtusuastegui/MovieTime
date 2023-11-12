@@ -8,6 +8,8 @@ import com.acsoft.movietime.feature_profile.data.local.ProfileDao
 import com.acsoft.movietime.feature_profile.data.local.ProfileDatabase
 import com.acsoft.movietime.feature_profile.data.remote.ApiService
 import com.acsoft.movietime.feature_profile.data.remote.RemoteDataSource
+import com.acsoft.movietime.feature_profile.data.repository.PopularPersonProfileRepositoryImpl
+import com.acsoft.movietime.feature_profile.domain.repository.PopularPersonProfileRepository
 import com.acsoft.movietime.utils.AppConstants
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -47,6 +49,14 @@ class ProfileModule {
      @Singleton
      @Provides
      fun provideRemoteDataSource(apiService: ApiService) = RemoteDataSource(apiService)
+
+     @Provides
+     fun providePopularPersonProfileRepository(
+          remoteDataSource: RemoteDataSource,
+          localDataSource: LocalDataSource
+     ): PopularPersonProfileRepository {
+          return PopularPersonProfileRepositoryImpl(remoteDataSource, localDataSource)
+     }
 
      //Room
      @Provides
