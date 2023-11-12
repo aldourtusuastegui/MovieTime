@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.acsoft.movietime.ui.dashboard.DashboardFragment"
+        android:name="com.acsoft.movietime.feature_movies.presentation.MoviesFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_movies" />
 
     <fragment
         android:id="@+id/navigation_notifications"
