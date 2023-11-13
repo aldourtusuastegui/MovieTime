@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "71982120654",
+    "project_id": "movietime-d91d2",
+    "storage_bucket": "movietime-d91d2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:71982120654:android:76d25faa7b6291c68b9a9f",
+        "android_client_info": {
+          "package_name": "com.acsoft.movietime"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYG7dFn7lKBsYMGVlLfHVjZuoo1wFix8w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
