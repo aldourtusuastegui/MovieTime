@@ -22,4 +22,10 @@
         android:name="com.acsoft.movietime.feature_images.presentation.LoadImagesFragment"
         android:label="@string/title_images"
         tools:layout="@layout/fragment_load_images" />
+
+    <fragment
+        android:id="@+id/navigation_location"
+        android:name="com.acsoft.movietime.feature_location.presentation.MapFragment"
+        android:label="@string/title_location"
+        tools:layout="@layout/fragment_map" />
 </navigation>
