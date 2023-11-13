@@ -6,6 +6,7 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_images">Images</string>
+    <string name="title_location">Location</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="popular_movies">Popular Movies</string>
     <string name="rated_movies">Rated Movies</string>
@@ -15,4 +16,7 @@
     <string name="upload_image">Upload Image</string>
     <string name="image_upload_successfully">The image was successfully uploaded</string>
     <string name="image_upload_failed">Image upload was not successful</string>
+
+    <string name="API_KEY">AIzaSyCVvplxzO6G5faOejsIBhT887feSOAU5Pg</string>
+    <string name="marker_sydney">Marker in Sydney</string>
 </resources>
