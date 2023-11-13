@@ -23,6 +23,7 @@ class LoadImagesFragment : Fragment() {
     private val binding get() = _binding!!
 
     private var position = 0
+    private var numberOfImagesUploaded = 0
 
     private val loadImagesViewModel: LoadImagesViewModel by viewModels()
 
@@ -64,9 +65,7 @@ class LoadImagesFragment : Fragment() {
                     binding.btnSelectImage.isEnabled = false
                 }
                 is Result.Success -> {
-                    binding.btnSelectImage.isEnabled = true
-                    binding.btnUploadImage.isEnabled = false
-                    binding.progressBar.visibility = View.GONE
+                    restoreDefaultValuesAfterUploadImages()
                     Toast.makeText(context, getString(R.string.image_upload_successfully, result.data.toString()),Toast.LENGTH_LONG).show()
                 }
                 is Result.Failure -> {
@@ -85,6 +84,19 @@ class LoadImagesFragment : Fragment() {
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
         getContent.launch(IMAGES_GALLERY)
         binding.btnUploadImage.isEnabled = true
+    }
+
+    private fun restoreDefaultValuesAfterUploadImages() {
+        numberOfImagesUploaded++
+        if (numberOfImagesUploaded==selectedImages.size) {
+            binding.btnSelectImage.isEnabled = true
+            binding.btnUploadImage.isEnabled = false
+            binding.progressBar.visibility = View.GONE
+            selectedImages.clear()
+            position = 0
+            numberOfImagesUploaded = 0
+            binding.ivGallery.setImageResource(R.drawable.ic_upload_file_24)
+        }
     }
 
     private fun showPreviousImage() {
