@@ -1,5 +1,6 @@
 package com.acsoft.movietime.feature_images.presentation
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -21,9 +22,11 @@ class LoadImagesFragment : Fragment() {
     private var _binding: FragmentLoadImagesBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var uri: Uri
+    private var position = 0
 
     private val loadImagesViewModel: LoadImagesViewModel by viewModels()
+
+    private var selectedImages: MutableList<Uri> = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,13 +38,22 @@ class LoadImagesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.btnSelectImage.setOnClickListener {
-            changeImage.launch(IMAGES_GALLERY)
+            selectImages()
         }
 
         binding.btnUploadImage.setOnClickListener {
             it.isEnabled = false
-            loadImagesViewModel.uploadImage(uri)
+            //loadImagesViewModel.uploadImage(uri)
+        }
+
+        binding.ibNext.setOnClickListener {
+            showNextImage()
+        }
+
+        binding.ibBack.setOnClickListener {
+            showPreviousImage()
         }
 
         loadImagesViewModel.uploadImage.observe(viewLifecycleOwner) { result ->
@@ -67,14 +79,32 @@ class LoadImagesFragment : Fragment() {
         }
     }
 
-    private val changeImage =
-        registerForActivityResult(
-            ActivityResultContracts.GetContent()
-        ) {
-            it?.let {
-                binding.ivGallery.setImageURI(it)
-                binding.btnUploadImage.isEnabled = true
-                uri = it
+    private fun selectImages() {
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        intent.type = IMAGES_GALLERY
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+        getContent.launch(IMAGES_GALLERY)
+    }
+
+    private fun showPreviousImage() {
+        if (position > 0) {
+            position--
+            binding.ivGallery.setImageURI(selectedImages[position])
+        }
+    }
+
+    private fun showNextImage() {
+        if (position < selectedImages.size -1) {
+            position++
+            binding.ivGallery.setImageURI(selectedImages[position])
+        }
+    }
+
+    private val getContent =
+        registerForActivityResult(ActivityResultContracts.GetMultipleContents()) { uris: List<Uri>? ->
+            uris?.let {
+                binding.ivGallery.setImageURI(it.first())
+                selectedImages.addAll(it)
             }
         }
 }
