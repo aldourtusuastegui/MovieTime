@@ -14,7 +14,7 @@
 
     <string name="select_image_from_gallery">select image from gallery</string>
     <string name="upload_image">Upload Image</string>
-    <string name="image_upload_successfully">The image was successfully uploaded</string>
+    <string name="image_upload_successfully">The image %1$s was successfully uploaded</string>
     <string name="image_upload_failed">Image upload was not successful</string>
 
     <string name="API_KEY">AIzaSyCVvplxzO6G5faOejsIBhT887feSOAU5Pg</string>

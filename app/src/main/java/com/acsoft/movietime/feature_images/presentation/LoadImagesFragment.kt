@@ -45,7 +45,7 @@ class LoadImagesFragment : Fragment() {
 
         binding.btnUploadImage.setOnClickListener {
             it.isEnabled = false
-            //loadImagesViewModel.uploadImage(uri)
+            loadImagesViewModel.uploadImage(selectedImages)
         }
 
         binding.ibNext.setOnClickListener {
@@ -67,7 +67,7 @@ class LoadImagesFragment : Fragment() {
                     binding.btnSelectImage.isEnabled = true
                     binding.btnUploadImage.isEnabled = false
                     binding.progressBar.visibility = View.GONE
-                    Toast.makeText(context, R.string.image_upload_successfully,Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, getString(R.string.image_upload_successfully, result.data.toString()),Toast.LENGTH_LONG).show()
                 }
                 is Result.Failure -> {
                     binding.btnSelectImage.isEnabled = true
@@ -84,6 +84,7 @@ class LoadImagesFragment : Fragment() {
         intent.type = IMAGES_GALLERY
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
         getContent.launch(IMAGES_GALLERY)
+        binding.btnUploadImage.isEnabled = true
     }
 
     private fun showPreviousImage() {
