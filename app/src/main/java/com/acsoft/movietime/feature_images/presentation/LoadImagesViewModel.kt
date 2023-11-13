@@ -13,20 +13,21 @@ import javax.inject.Inject
 @HiltViewModel
 class LoadImagesViewModel @Inject constructor(): ViewModel() {
 
-    private val _uploadImage = MutableLiveData<Result<String>>()
-    val uploadImage: LiveData<Result<String>> get() = _uploadImage
+    private val _uploadImage = MutableLiveData<Result<Int>>()
+    val uploadImage: LiveData<Result<Int>> get() = _uploadImage
 
-    fun uploadImage(uri: Uri) {
+    fun uploadImage(selectedImages: List<Uri>) {
         _uploadImage.value = Result.Loading
         val storageRef = FirebaseStorage.getInstance()
-        storageRef.getReference(IMAGES).child(System.currentTimeMillis().toString())
-            .putFile(uri)
-            .addOnSuccessListener { task ->
-                val imageUrl = task.metadata!!.reference!!.downloadUrl
-                _uploadImage.value = Result.Success(imageUrl.toString())
-            }.addOnFailureListener {
-                _uploadImage.value = Result.Failure(it.message.toString())
-            }
+        selectedImages.forEachIndexed { index, uri ->
+            val fireReference = storageRef.getReference(IMAGES).child(System.currentTimeMillis().toString())
+            fireReference.putFile(uri)
+                .addOnSuccessListener { _ ->
+                    _uploadImage.value = Result.Success(index+1)
+                }.addOnFailureListener {
+                    _uploadImage.value = Result.Failure(it.message.toString())
+                }
+        }
     }
 
 }
