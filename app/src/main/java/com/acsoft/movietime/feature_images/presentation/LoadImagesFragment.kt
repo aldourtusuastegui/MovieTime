@@ -40,6 +40,7 @@ class LoadImagesFragment : Fragment() {
         }
 
         binding.btnUploadImage.setOnClickListener {
+            it.isEnabled = false
             loadImagesViewModel.uploadImage(uri)
         }
 
@@ -48,14 +49,18 @@ class LoadImagesFragment : Fragment() {
                 is Result.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE
                     binding.progressBar.isIndeterminate
-                    setIsButtonEnable(false)
+                    binding.btnSelectImage.isEnabled = false
                 }
                 is Result.Success -> {
-                    clearViewElements()
+                    binding.btnSelectImage.isEnabled = true
+                    binding.btnUploadImage.isEnabled = false
+                    binding.progressBar.visibility = View.GONE
                     Toast.makeText(context, R.string.image_upload_successfully,Toast.LENGTH_LONG).show()
                 }
                 is Result.Failure -> {
-                   clearViewElements()
+                    binding.btnSelectImage.isEnabled = true
+                    binding.btnUploadImage.isEnabled = false
+                    binding.progressBar.visibility = View.GONE
                     Toast.makeText(context, R.string.image_upload_failed,Toast.LENGTH_LONG).show()
                 }
             }
@@ -68,17 +73,8 @@ class LoadImagesFragment : Fragment() {
         ) {
             it?.let {
                 binding.ivGallery.setImageURI(it)
+                binding.btnUploadImage.isEnabled = true
                 uri = it
             }
         }
-
-    private fun clearViewElements() {
-        binding.progressBar.visibility = View.GONE
-        setIsButtonEnable(true)
-    }
-
-    private fun setIsButtonEnable(isEnabled: Boolean = false) {
-        binding.btnSelectImage.isEnabled = isEnabled
-        binding.btnUploadImage.isEnabled = isEnabled
-    }
 }
