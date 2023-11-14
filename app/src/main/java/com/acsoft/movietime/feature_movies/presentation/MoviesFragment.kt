@@ -55,7 +55,11 @@ class MoviesFragment : Fragment() {
                     //TODO
                 }
                 is Result.Success -> {
-                    popularMoviesAdapter.setMovieList(result.data.results ?: listOf())
+                    val popularMoviesList = result.data.results
+                    popularMoviesList?.let {
+                        popularMoviesAdapter.setMovieList(it)
+                        moviesViewModel.insertPopularMoviesDb(it)
+                    }
                 }
                 is Result.Failure -> {
                     //TODO
@@ -75,7 +79,11 @@ class MoviesFragment : Fragment() {
                     //TODO
                 }
                 is Result.Success -> {
-                    ratedMoviesAdapter.setMovieList(result.data.results ?: listOf())
+                    val ratedMoviesList = result.data.results
+                    ratedMoviesList?.let {
+                        ratedMoviesAdapter.setMovieList(it)
+                        moviesViewModel.insertRatedMoviesDb(it)
+                    }
                 }
                 is Result.Failure -> {
                     //TODO
@@ -95,11 +103,7 @@ class MoviesFragment : Fragment() {
                     //TODO
                 }
                 is Result.Success -> {
-                    val moviesList = result.data.results
-                    moviesList?.let {
-                        recommendationsAdapter.setMovieList(it)
-                        moviesViewModel.insertPopularMoviesDb(it)
-                    }
+                    recommendationsAdapter.setMovieList(result.data.results ?: listOf())
                 }
                 is Result.Failure -> {
                     //TODO

@@ -3,6 +3,7 @@ package com.acsoft.movietime.feature_movies.domain.conversion
 import com.acsoft.movietime.feature_movies.data.model.MovieEntity
 import com.acsoft.movietime.feature_movies.data.model.MovieListResponse
 import com.acsoft.movietime.feature_movies.data.model.MovieResponse
+import com.acsoft.movietime.feature_movies.data.model.RatedMovieEntity
 import com.acsoft.movietime.feature_movies.domain.entities.Movie
 import com.acsoft.movietime.feature_movies.domain.entities.MovieList
 import retrofit2.Response
@@ -49,6 +50,28 @@ object MoviesConverter {
                 title = movieEntity.title,
                 posterPath = movieEntity.posterPath,
                 releaseDate = movieEntity.releaseDate
+            )
+        }
+    }
+
+    fun mapListOfRatedMoviesEntityToListOfMovies(ratedMoviesEntityList: List<RatedMovieEntity>): List<Movie> {
+        return ratedMoviesEntityList.map {
+            Movie(
+                id = it.id,
+                title = it.title,
+                posterPath = it.posterPath,
+                releaseDate = it.releaseDate
+            )
+        }
+    }
+
+    fun mapListOfMoviesToListOfRatedMovieEntity(moviesList: List<Movie>): List<RatedMovieEntity> {
+        return moviesList.map {
+            RatedMovieEntity(
+                id = it.id,
+                title = it.title,
+                posterPath = it.posterPath,
+                releaseDate = it.releaseDate
             )
         }
     }

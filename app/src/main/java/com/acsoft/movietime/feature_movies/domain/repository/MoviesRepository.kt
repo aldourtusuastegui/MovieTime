@@ -2,6 +2,7 @@ package com.acsoft.movietime.feature_movies.domain.repository
 
 import com.acsoft.movietime.feature_movies.data.model.MovieEntity
 import com.acsoft.movietime.feature_movies.data.model.MovieListResponse
+import com.acsoft.movietime.feature_movies.data.model.RatedMovieEntity
 import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 
@@ -15,5 +16,10 @@ interface MoviesRepository {
 
     fun getPopularMoviesListDb(): Flow<List<MovieEntity>>
 
+    fun getRatedMoviesListDb(): Flow<List<RatedMovieEntity>>
+
     suspend fun insertPopularMoviesListDb(popularMoviesList : List<MovieEntity>)
+
+    suspend fun insertRatedMoviesListDb(ratedMoviesList : List<RatedMovieEntity>)
+
 }

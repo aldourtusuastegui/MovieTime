@@ -9,5 +9,17 @@ data class MovieEntity(
     val id: Int,
     val title: String,
     val posterPath: String,
-    val releaseDate: String
+    val releaseDate: String,
 )
+
+
+@Entity
+data class RatedMovieEntity(
+    @PrimaryKey
+    val id: Int,
+    val title: String,
+    val posterPath: String,
+    val releaseDate: String,
+)
+
+

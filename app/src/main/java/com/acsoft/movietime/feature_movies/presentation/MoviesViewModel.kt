@@ -11,6 +11,7 @@ import com.acsoft.movietime.feature_movies.domain.usecase.GetPopularMoviesUseCas
 import com.acsoft.movietime.feature_movies.domain.usecase.GetRatedMoviesUseCase
 import com.acsoft.movietime.feature_movies.domain.usecase.GetRecommendationsMoviesUseCase
 import com.acsoft.movietime.feature_movies.domain.usecase.InsertPopularMoviesUseCase
+import com.acsoft.movietime.feature_movies.domain.usecase.InsertRatedMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -22,7 +23,8 @@ class MoviesViewModel @Inject constructor(
     private val getPopularMoviesUseCase: GetPopularMoviesUseCase,
     private val getRatedMoviesUseCase: GetRatedMoviesUseCase,
     private val getRecommendationsMoviesUseCase: GetRecommendationsMoviesUseCase,
-    private val insertPopularMoviesUseCase: InsertPopularMoviesUseCase
+    private val insertPopularMoviesUseCase: InsertPopularMoviesUseCase,
+    private val insertRatedMoviesUseCase: InsertRatedMoviesUseCase
 ) : ViewModel() {
 
     private val _popularMoviesList = MutableLiveData<Result<MovieList>>()
@@ -77,6 +79,12 @@ class MoviesViewModel @Inject constructor(
     fun insertPopularMoviesDb(popularMoviesList: List<Movie>) {
         CoroutineScope(Dispatchers.IO).launch {
             insertPopularMoviesUseCase.invoke(popularMoviesList)
+        }
+    }
+
+    fun insertRatedMoviesDb(ratedMoviesList: List<Movie>) {
+        CoroutineScope(Dispatchers.IO).launch {
+            insertRatedMoviesUseCase.invoke(ratedMoviesList)
         }
     }
 }
