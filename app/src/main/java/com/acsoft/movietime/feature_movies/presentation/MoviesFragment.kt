@@ -103,7 +103,11 @@ class MoviesFragment : Fragment() {
                     //TODO
                 }
                 is Result.Success -> {
-                    recommendationsAdapter.setMovieList(result.data.results ?: listOf())
+                    val recommendationsMoviesList = result.data.results
+                    recommendationsMoviesList?.let {
+                        recommendationsAdapter.setMovieList(it)
+                        moviesViewModel.insertRecommendationsMoviesDb(it)
+                    }
                 }
                 is Result.Failure -> {
                     //TODO

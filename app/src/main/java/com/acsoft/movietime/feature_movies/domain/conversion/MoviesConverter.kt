@@ -4,6 +4,7 @@ import com.acsoft.movietime.feature_movies.data.model.MovieEntity
 import com.acsoft.movietime.feature_movies.data.model.MovieListResponse
 import com.acsoft.movietime.feature_movies.data.model.MovieResponse
 import com.acsoft.movietime.feature_movies.data.model.RatedMovieEntity
+import com.acsoft.movietime.feature_movies.data.model.RecommendationsMovieEntity
 import com.acsoft.movietime.feature_movies.domain.entities.Movie
 import com.acsoft.movietime.feature_movies.domain.entities.MovieList
 import retrofit2.Response
@@ -68,6 +69,28 @@ object MoviesConverter {
     fun mapListOfMoviesToListOfRatedMovieEntity(moviesList: List<Movie>): List<RatedMovieEntity> {
         return moviesList.map {
             RatedMovieEntity(
+                id = it.id,
+                title = it.title,
+                posterPath = it.posterPath,
+                releaseDate = it.releaseDate
+            )
+        }
+    }
+
+    fun mapListOfRecommendationsMoviesEntityToListOfMovies(recommendationsMoviesEntityList: List<RecommendationsMovieEntity>): List<Movie> {
+        return recommendationsMoviesEntityList.map {
+            Movie(
+                id = it.id,
+                title = it.title,
+                posterPath = it.posterPath,
+                releaseDate = it.releaseDate
+            )
+        }
+    }
+
+    fun mapListOfMoviesToListOfRecommendationsMovieEntity(moviesList: List<Movie>): List<RecommendationsMovieEntity> {
+        return moviesList.map {
+            RecommendationsMovieEntity(
                 id = it.id,
                 title = it.title,
                 posterPath = it.posterPath,

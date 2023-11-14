@@ -6,6 +6,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.acsoft.movietime.feature_movies.data.model.MovieEntity
 import com.acsoft.movietime.feature_movies.data.model.RatedMovieEntity
+import com.acsoft.movietime.feature_movies.data.model.RecommendationsMovieEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -22,5 +23,11 @@ interface MoviesDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertRatedMoviesList(ratedMoviesList: List<RatedMovieEntity>)
+
+    @Query("SELECT * FROM RecommendationsMovieEntity")
+    fun getRecommendationsMoviesList() : Flow<List<RecommendationsMovieEntity>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertRecommendationsMoviesList(recommendationsMoviesList: List<RecommendationsMovieEntity>)
 
 }
