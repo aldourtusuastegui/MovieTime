@@ -1,5 +1,6 @@
 package com.acsoft.movietime.feature_movies.domain.conversion
 
+import com.acsoft.movietime.feature_movies.data.model.MovieEntity
 import com.acsoft.movietime.feature_movies.data.model.MovieListResponse
 import com.acsoft.movietime.feature_movies.data.model.MovieResponse
 import com.acsoft.movietime.feature_movies.domain.entities.Movie
@@ -17,7 +18,7 @@ object MoviesConverter {
         )
     }
 
-    fun movieResponseToMovie(movieResponse: List<MovieResponse>?) : List<Movie> {
+    private fun movieResponseToMovie(movieResponse: List<MovieResponse>?) : List<Movie> {
         return movieResponse?.map { response ->
             Movie(
                 id = response.id,
@@ -28,4 +29,14 @@ object MoviesConverter {
         } ?: listOf()
     }
 
+    fun mapListOfMoviesToListOfMoviesEntity(moviesList: List<Movie>): List<MovieEntity> {
+        return moviesList.map { movie ->
+            MovieEntity(
+                id = movie.id,
+                title = movie.title,
+                posterPath = movie.posterPath,
+                releaseDate = movie.releaseDate
+            )
+        }
+    }
 }

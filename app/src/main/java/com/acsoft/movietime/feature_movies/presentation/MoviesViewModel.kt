@@ -5,11 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.acsoft.movietime.core.Result
+import com.acsoft.movietime.feature_movies.domain.entities.Movie
 import com.acsoft.movietime.feature_movies.domain.entities.MovieList
 import com.acsoft.movietime.feature_movies.domain.usecase.GetPopularMoviesUseCase
 import com.acsoft.movietime.feature_movies.domain.usecase.GetRatedMoviesUseCase
 import com.acsoft.movietime.feature_movies.domain.usecase.GetRecommendationsMoviesUseCase
+import com.acsoft.movietime.feature_movies.domain.usecase.InsertPopularMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -17,7 +21,8 @@ import javax.inject.Inject
 class MoviesViewModel @Inject constructor(
     private val getPopularMoviesUseCase: GetPopularMoviesUseCase,
     private val getRatedMoviesUseCase: GetRatedMoviesUseCase,
-    private val getRecommendationsMoviesUseCase: GetRecommendationsMoviesUseCase
+    private val getRecommendationsMoviesUseCase: GetRecommendationsMoviesUseCase,
+    private val insertPopularMoviesUseCase: InsertPopularMoviesUseCase
 ) : ViewModel() {
 
     private val _popularMoviesList = MutableLiveData<Result<MovieList>>()
@@ -66,6 +71,12 @@ class MoviesViewModel @Inject constructor(
             } catch (e: Exception) {
                 _recommendationsMoviesList.value = Result.Failure("An unexpected error occurred: ${e.message}")
             }
+        }
+    }
+
+    fun insertPopularMoviesDb(popularMoviesList: List<Movie>) {
+        CoroutineScope(Dispatchers.IO).launch {
+            insertPopularMoviesUseCase.invoke(popularMoviesList)
         }
     }
 }
