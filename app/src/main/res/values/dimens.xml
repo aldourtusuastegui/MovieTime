@@ -6,11 +6,13 @@
     <dimen name="dimen_10_dp">10dp</dimen>
     <dimen name="dimen_16_dp">16dp</dimen>
     <dimen name="dimen_20_dp">20dp</dimen>
+    <dimen name="dimen_50_dp">50dp</dimen>
     <dimen name="dimen_100_dp">100dp</dimen>
     <dimen name="dimen_150_dp">150dp</dimen>
     <dimen name="dimen_160_dp">160dp</dimen>
     <dimen name="dimen_200_dp">200dp</dimen>
     <dimen name="dimen_240_dp">240dp</dimen>
+    <dimen name="dimen_280_dp">280dp</dimen>
     <dimen name="dimen_300_dp">300dp</dimen>
 
     <dimen name="dimen_18_sp">18sp</dimen>
