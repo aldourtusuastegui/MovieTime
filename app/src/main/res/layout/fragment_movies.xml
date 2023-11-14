@@ -16,14 +16,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/popular_movies"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="@dimen/dimen_8_dp"
             android:textStyle="bold"
-            android:textSize="20sp"/>
+            android:textSize="@dimen/dimen_20_sp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_popular_movies"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="@dimen/dimen_160_dp"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
@@ -31,15 +31,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/rated_movies"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="@dimen/dimen_8_dp"
+            android:layout_marginTop="@dimen/dimen_20_dp"
             android:textStyle="bold"
-            android:textSize="20sp"/>
+            android:textSize="@dimen/dimen_20_sp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_rated_movies"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="@dimen/dimen_160_dp"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
@@ -47,15 +47,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/recommended_movies"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="@dimen/dimen_8_dp"
+            android:layout_marginTop="@dimen/dimen_20_dp"
             android:textStyle="bold"
-            android:textSize="20sp"/>
+            android:textSize="@dimen/dimen_20_sp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_recommendations_movies"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="@dimen/dimen_160_dp"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 

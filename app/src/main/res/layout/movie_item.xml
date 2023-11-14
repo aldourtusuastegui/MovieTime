@@ -9,11 +9,11 @@
     tools:background="@color/black">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="100dp"
-        android:layout_height="150dp"
-        android:layout_margin="8dp"
+        android:layout_width="@dimen/dimen_100_dp"
+        android:layout_height="@dimen/dimen_150_dp"
+        android:layout_margin="@dimen/dimen_8_dp"
         android:clipToPadding="true"
-        app:cardCornerRadius="8dp">
+        app:cardCornerRadius="@dimen/dimen_8_dp">
 
         <ImageView
             android:id="@+id/img_movie"
