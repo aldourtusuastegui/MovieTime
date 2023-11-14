@@ -88,15 +88,53 @@ Cada feature cuenta con su propia logica y no comparte esta logica con los otros
 - **MoviesViewModel**: Representa el ViewModel asociado al fragmento `MoviesFragment`.
 - **MovieAdapter**: Implementa el adaptador para la visualización de la lista de películas en la interfaz gráfica.
 
+### Features
+
+#### Profile
+Muestra información del actor más popular del momento asi como las peliculas en las que ha participado, al perder la conexión a internet se persisten los datos usando Room.
+- Se uso Retrofit para obtener datos del servidor.
+- Room para persistir la información.
+- Se implementó clean architecture y MVVM.
+- Se hace uso de Hilt para el manejo de dependencias.
+- Se usa una sealed class para menejar los diferentes estados de la Respuesta del servidor.
+- Se usaron LiveData, Flows y Coroutines.
+
+#### Movies
+Muestras diferentes listados de Peliculas (Populares,Mejor calificadas,Recomendaciones), al perder la conexión a internet se persisten los datos usando Room.
+- Se uso Retrofit para obtener datos del servidor.
+- Room para persistir la información.
+- Se implementó clean architecture y MVVM.
+- Se hace uso de Hilt para el manejo de dependencias.
+- Se usa una sealed class para menejar los diferentes estados de la Respuesta del servidor.
+- Se usaron LiveData, Flows y Coroutines.
+
+#### Images
+Da la posibilidad de seleccionar imagenes de la galeria del dispositivo, poder visualizar cada una de las imagenes, y subirlas a Firebase storage.
+- Se usa una sealed class para menejar los diferentes estados de la Respuesta del servidor.
+- Se implemento Firebase Storage.
+- Se hace un intent para abrir la galeria.
+
+#### Location
+Hace uso de Google Maps 
+
 #### ¿Qúe me hubiese gustado mejorar? 
 
-#### Mapas
+#### Tab Location
 Me hubiese gustado terminar la ultima parte relacionada con la localización. solo he logrado mostrar el mapa con google maps.
 Para mi una posible solución a este problema seria la siguiente:
--Pedir al usuario permisos para poder seguir su localización.
--Hacer uso de un Service para obtener la ubicación del usuario cada x cantidad de tiempo.
--Hacer uso de firebase para guardar la localización del usuario.
--Obtener la información de firebase para mostrar diferentes marcadores en el mapa.
+- Pedir al usuario permisos para poder seguir su localización.
+- Hacer uso de un Service para obtener la ubicación del usuario cada x cantidad de tiempo.
+- Hacer uso de firebase para guardar la localización del usuario.
+- Obtener la información de firebase para mostrar diferentes marcadores en el mapa.
+
+#### Tab Images
+No alcancé a agregar la opción de capturar una foto con el dispositivo.
+Una posible solución para este problema seria la siguiente:
+- Pedir permisos al usuario para poder usar la camara.
+- Crear un Intent para abrir la Camara.
+- Agregar el Uri de la foto tomada a la lista de imagenes  que se van a subir.
+- Tambien se podria guardar en el dispositivo, no solamente tomar el Uri.
+- teniendo las imagenes seleccionadas y las que se tomaron desde la camara se hace la insercion a firebase dando click a Upload Images
 
 #### En el codigo
 - Algunas funciones podrian ser extension functions en vez de funciones normales.
