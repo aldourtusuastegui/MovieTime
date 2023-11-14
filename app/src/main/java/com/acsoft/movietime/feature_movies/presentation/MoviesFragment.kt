@@ -24,7 +24,6 @@ class MoviesFragment : Fragment() {
     private lateinit var ratedMoviesAdapter: MovieAdapter
     private lateinit var recommendationsAdapter: MovieAdapter
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         popularMoviesAdapter = MovieAdapter()
