@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.acsoft.movietime.R
+import com.acsoft.movietime.core.BaseViewHolder
 import com.acsoft.movietime.databinding.MovieItemBinding
 import com.acsoft.movietime.feature_movies.domain.entities.Movie
 import com.acsoft.movietime.utils.AppConstants
@@ -21,7 +22,7 @@ class MovieAdapter : RecyclerView.Adapter<BaseViewHolder<*>>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
         val itemBinding = MovieItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return PlaceViewHolder(itemBinding, parent.context)
+        return MovieViewHolder(itemBinding, parent.context)
     }
 
     override fun getItemCount(): Int {
@@ -30,13 +31,13 @@ class MovieAdapter : RecyclerView.Adapter<BaseViewHolder<*>>() {
 
     override fun onBindViewHolder(holder: BaseViewHolder<*>, position: Int) {
         when(holder) {
-            is PlaceViewHolder -> {
+            is MovieViewHolder -> {
                 holder.bind(moviesList[position])
             }
         }
     }
 
-    private inner class PlaceViewHolder(val binding : MovieItemBinding, val context: Context) :
+    private inner class MovieViewHolder(val binding : MovieItemBinding, val context: Context) :
         BaseViewHolder<Movie>(binding.root) {
         override fun bind(item: Movie) {
             Glide.with(context)

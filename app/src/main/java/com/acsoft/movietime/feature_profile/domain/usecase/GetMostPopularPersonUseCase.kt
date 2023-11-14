@@ -2,6 +2,7 @@ package com.acsoft.movietime.feature_profile.domain.usecase
 
 import android.content.Context
 import com.acsoft.movietime.core.Result
+import com.acsoft.movietime.feature_profile.domain.conversion.ProfileConverters.convertKnownForListResponseToKnownForList
 import com.acsoft.movietime.feature_profile.domain.entities.PopularPersonProfile
 import com.acsoft.movietime.feature_profile.domain.repository.PopularPersonProfileRepository
 import com.acsoft.movietime.utils.NetworkUtils
@@ -19,11 +20,13 @@ class GetMostPopularPersonUseCase @Inject constructor(
             val apiResponse = popularPersonProfileRepository.getMostPopularPeopleList()
             if (apiResponse.isSuccessful) {
                 val profile = apiResponse.body()?.results?.first()
+                val knownForResponseList = profile?.knownFor
                 val popularPerson = PopularPersonProfile(
                     name = profile?.name,
                     popularity = profile?.popularity,
                     profilePath = profile?.profilePath,
-                    knownForDepartment = profile?.knownForDepartment
+                    knownForDepartment = profile?.knownForDepartment,
+                    knownFor = convertKnownForListResponseToKnownForList(knownForResponseList)
                 )
                 emit(Result.Success(popularPerson))
             } else {

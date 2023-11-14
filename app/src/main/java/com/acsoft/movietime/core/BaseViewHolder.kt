@@ -1,4 +1,4 @@
-package com.acsoft.movietime.feature_movies.presentation
+package com.acsoft.movietime.core
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

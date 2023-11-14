@@ -30,6 +30,8 @@
     <string name="remote_data_failed">it was not possible to obtain remote data</string>
     <string name="local_data_failed">it was not possible to obtain local data</string>
     <string name="unexpected_error_occurred">An unexpected error occurred</string>
+    <string name="without_title">without title</string>
+    <string name="known_for">Known For:</string>
 
     <string name="loading">Loading</string>
 </resources>
