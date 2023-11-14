@@ -51,7 +51,6 @@ class MostPopularPersonProfileFragment : Fragment() {
                 }
                 is Result.Success -> {
                     fillProfile(result.data)
-                    Log.d("testing","resilt ${result.data.knownFor.toString()}")
                     mostPopularPersonViewModel.insertMostPopularPerson(result.data)
                 }
                 is Result.Failure -> {
