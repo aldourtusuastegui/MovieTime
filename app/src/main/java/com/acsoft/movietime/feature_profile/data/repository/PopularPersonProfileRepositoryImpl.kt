@@ -1,6 +1,7 @@
 package com.acsoft.movietime.feature_profile.data.repository
 
 import com.acsoft.movietime.feature_profile.data.local.LocalDataSource
+import com.acsoft.movietime.feature_profile.data.model.KnownForEntity
 import com.acsoft.movietime.feature_profile.data.model.ProfileEntity
 import com.acsoft.movietime.feature_profile.data.model.Results
 import com.acsoft.movietime.feature_profile.data.remote.RemoteDataSource
@@ -29,12 +30,21 @@ class PopularPersonProfileRepositoryImpl @Inject constructor(
         localDataSource.insertMostPopularPersonProfile(profileEntity)
     }
 
+    override fun getKnownForDb(): Flow<List<KnownForEntity>?> {
+        return localDataSource.getKnownFor()
+    }
+
+    override suspend fun insertKnownForDb(knownForList: List<KnownForEntity>) {
+        localDataSource.insertKnownFor(knownForList)
+    }
+
     private fun mapPopularPersonProfileToProfileEntity(popularPersonProfile: PopularPersonProfile): ProfileEntity {
         return ProfileEntity(
             id = popularPersonProfile.id,
             name = popularPersonProfile.name,
             popularity = popularPersonProfile.popularity,
-            profilePath = popularPersonProfile.profilePath
+            profilePath = popularPersonProfile.profilePath,
+            knownForDepartment = popularPersonProfile.knownForDepartment
         )
     }
 }

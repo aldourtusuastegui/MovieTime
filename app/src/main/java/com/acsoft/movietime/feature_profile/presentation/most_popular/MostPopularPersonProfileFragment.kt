@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.acsoft.movietime.R
 import com.acsoft.movietime.core.Result
 import com.acsoft.movietime.databinding.FragmentMostPopularPersonProfileBinding
 import com.acsoft.movietime.feature_profile.domain.entities.PopularPersonProfile
@@ -23,6 +25,13 @@ class MostPopularPersonProfileFragment : Fragment() {
 
     private val mostPopularPersonViewModel: MostPopularPersonViewModel by viewModels()
 
+    private lateinit var knownForAdapter: KnownForAdapter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        knownForAdapter = KnownForAdapter()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,26 +47,41 @@ class MostPopularPersonProfileFragment : Fragment() {
         mostPopularPersonViewModel.mostPopularPerson.observe(viewLifecycleOwner) { result ->
             when(result) {
                 is Result.Loading -> {
+                    Log.d(TAG,getString(R.string.loading))
                 }
                 is Result.Success -> {
                     fillProfile(result.data)
                     mostPopularPersonViewModel.insertMostPopularPerson(result.data)
                 }
                 is Result.Failure -> {
+                    Log.d(TAG,getString(R.string.unexpected_error_occurred))
                 }
             }
         }
     }
 
     private fun fillProfile(popularPersonProfile: PopularPersonProfile) {
-        Log.d("testing","is $popularPersonProfile")
+
+        binding.rvKnownFor.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvKnownFor.adapter = knownForAdapter
+
         popularPersonProfile.apply {
             Glide.with(this@MostPopularPersonProfileFragment)
                 .load(AppConstants.IMAGE_URL.plus(this.profilePath))
                 .centerCrop()
                 .into(binding.ivProfile)
             binding.tvName.text = this.name
-            binding.tvPopularity.text = this.popularity.toString()
+            binding.tvPopularity.text = getString(R.string.popularity_points,this.popularity.toString())
+            binding.tvKnownForDepartment.text = this.knownForDepartment
+
+            val knownForList = popularPersonProfile.knownFor
+            knownForList?.let {
+                knownForAdapter.setKnownForList(it)
+            }
         }
+    }
+
+    companion object {
+        const val TAG = "PROFILE_FRAGMENT"
     }
 }
