@@ -29,6 +29,7 @@ object MoviesConverter {
         } ?: listOf()
     }
 
+    //convert List of Movies to List of MovieEntity
     fun mapListOfMoviesToListOfMoviesEntity(moviesList: List<Movie>): List<MovieEntity> {
         return moviesList.map { movie ->
             MovieEntity(
@@ -36,6 +37,18 @@ object MoviesConverter {
                 title = movie.title,
                 posterPath = movie.posterPath,
                 releaseDate = movie.releaseDate
+            )
+        }
+    }
+
+    //convert List of MovieEntity to List of Movies
+    fun mapListOfMoviesEntityToListOfMovies(movieEntityList: List<MovieEntity>): List<Movie> {
+        return movieEntityList.map { movieEntity ->
+            Movie(
+                id = movieEntity.id,
+                title = movieEntity.title,
+                posterPath = movieEntity.posterPath,
+                releaseDate = movieEntity.releaseDate
             )
         }
     }

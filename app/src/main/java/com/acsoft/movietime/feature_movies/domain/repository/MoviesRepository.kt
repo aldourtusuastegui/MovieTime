@@ -13,7 +13,7 @@ interface MoviesRepository {
 
     suspend fun getRecommendationsMoviesList(page: Int): Response<MovieListResponse>
 
-    suspend fun getPopularMoviesListDb(): Flow<List<MovieEntity>>
+    fun getPopularMoviesListDb(): Flow<List<MovieEntity>>
 
     suspend fun insertPopularMoviesListDb(popularMoviesList : List<MovieEntity>)
 }

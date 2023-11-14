@@ -28,7 +28,7 @@ class MoviesRepositoryImpl @Inject constructor(
         return moviesRemoteDataSource.getRecommendationsMoviesList(page)
     }
 
-    override suspend fun getPopularMoviesListDb(): Flow<List<MovieEntity>> {
+    override fun getPopularMoviesListDb(): Flow<List<MovieEntity>> {
         return moviesLocalDataSource.getPopularMoviesList()
     }
 
