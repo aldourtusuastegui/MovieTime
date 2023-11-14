@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.acsoft.movietime.R
 import com.acsoft.movietime.databinding.MovieItemBinding
 import com.acsoft.movietime.feature_movies.domain.entities.Movie
 import com.acsoft.movietime.utils.AppConstants
@@ -41,6 +42,7 @@ class MovieAdapter : RecyclerView.Adapter<BaseViewHolder<*>>() {
             Glide.with(context)
                 .load(AppConstants.IMAGE_URL.plus(item.posterPath))
                 .centerCrop()
+                .placeholder(R.drawable.ic_launcher_background)
                 .into(binding.imgMovie)
         }
     }

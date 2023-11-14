@@ -4,12 +4,10 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class PopularMovieEntity(
+data class RatedMovieEntity(
     @PrimaryKey
     val id: Int,
     val title: String,
     val posterPath: String,
     val releaseDate: String,
 )
-
-

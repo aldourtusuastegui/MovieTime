@@ -1,12 +1,14 @@
 package com.acsoft.movietime.feature_movies.presentation
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.acsoft.movietime.R
 import com.acsoft.movietime.core.Result
 import com.acsoft.movietime.databinding.FragmentMoviesBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,6 +23,7 @@ class MoviesFragment : Fragment() {
     private lateinit var popularMoviesAdapter: MovieAdapter
     private lateinit var ratedMoviesAdapter: MovieAdapter
     private lateinit var recommendationsAdapter: MovieAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +55,7 @@ class MoviesFragment : Fragment() {
         moviesViewModel.popularMoviesList.observe(viewLifecycleOwner) { result ->
             when(result) {
                 is Result.Loading -> {
-                    //TODO
+                    Log.d(TAG,getString(R.string.loading))
                 }
                 is Result.Success -> {
                     val popularMoviesList = result.data.results
@@ -62,7 +65,7 @@ class MoviesFragment : Fragment() {
                     }
                 }
                 is Result.Failure -> {
-                    //TODO
+                    Log.d(TAG,getString(R.string.unexpected_error_occurred))
                 }
             }
         }
@@ -76,7 +79,7 @@ class MoviesFragment : Fragment() {
         moviesViewModel.ratedMoviesList.observe(viewLifecycleOwner) { result ->
             when(result) {
                 is Result.Loading -> {
-                    //TODO
+                    Log.d(TAG,getString(R.string.loading))
                 }
                 is Result.Success -> {
                     val ratedMoviesList = result.data.results
@@ -86,7 +89,7 @@ class MoviesFragment : Fragment() {
                     }
                 }
                 is Result.Failure -> {
-                    //TODO
+                    Log.d(TAG,getString(R.string.unexpected_error_occurred))
                 }
             }
         }
@@ -100,7 +103,7 @@ class MoviesFragment : Fragment() {
         moviesViewModel.recommendationsMoviesList.observe(viewLifecycleOwner) { result ->
             when(result) {
                 is Result.Loading -> {
-                    //TODO
+                    Log.d(TAG,getString(R.string.loading))
                 }
                 is Result.Success -> {
                     val recommendationsMoviesList = result.data.results
@@ -110,9 +113,13 @@ class MoviesFragment : Fragment() {
                     }
                 }
                 is Result.Failure -> {
-                    //TODO
+                    Log.d(TAG,getString(R.string.unexpected_error_occurred))
                 }
             }
         }
+    }
+
+    companion object {
+        const val TAG = "MOVIES_FRAGMENT"
     }
 }

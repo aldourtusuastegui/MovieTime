@@ -13,6 +13,7 @@ import com.acsoft.movietime.feature_movies.domain.usecase.GetRecommendationsMovi
 import com.acsoft.movietime.feature_movies.domain.usecase.InsertPopularMoviesUseCase
 import com.acsoft.movietime.feature_movies.domain.usecase.InsertRatedMoviesUseCase
 import com.acsoft.movietime.feature_movies.domain.usecase.InsertRecommendationsMoviesUseCase
+import com.acsoft.movietime.utils.AppConstants.AN_ERROR_OCCURRED
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -38,7 +39,6 @@ class MoviesViewModel @Inject constructor(
     private val _recommendationsMoviesList = MutableLiveData<Result<MovieList>>()
     val recommendationsMoviesList: LiveData<Result<MovieList>> get() = _recommendationsMoviesList
 
-
     fun getPopularMovies() {
         viewModelScope.launch {
             try {
@@ -47,7 +47,7 @@ class MoviesViewModel @Inject constructor(
                     _popularMoviesList.value = result
                 }
             } catch (e: Exception) {
-                _popularMoviesList.value = Result.Failure("An unexpected error occurred: ${e.message}")
+                _popularMoviesList.value = Result.Failure(AN_ERROR_OCCURRED)
             }
         }
     }
@@ -60,7 +60,7 @@ class MoviesViewModel @Inject constructor(
                     _ratedMoviesList.value = result
                 }
             } catch (e: Exception) {
-                _ratedMoviesList.value = Result.Failure("An unexpected error occurred: ${e.message}")
+                _ratedMoviesList.value = Result.Failure(AN_ERROR_OCCURRED)
             }
         }
     }
@@ -73,7 +73,7 @@ class MoviesViewModel @Inject constructor(
                     _recommendationsMoviesList.value = result
                 }
             } catch (e: Exception) {
-                _recommendationsMoviesList.value = Result.Failure("An unexpected error occurred: ${e.message}")
+                _recommendationsMoviesList.value = Result.Failure(AN_ERROR_OCCURRED)
             }
         }
     }

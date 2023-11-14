@@ -18,9 +18,9 @@ class GetPopularMoviesUseCase @Inject constructor(
 ) {
     fun invoke(): Flow<Result<MovieList>> = flow {
         if (NetworkUtils.isInternetAvailable(context)) {
-            val moviesListResponse = moviesRepository.getPopularMoviesList(1)
-            if (moviesListResponse.isSuccessful) {
-                emit(Result.Success(movieListResponseToMovieList(moviesListResponse)))
+            val popularMoviesListResponse = moviesRepository.getPopularMoviesList(1)
+            if (popularMoviesListResponse.isSuccessful) {
+                emit(Result.Success(movieListResponseToMovieList(popularMoviesListResponse)))
             } else {
                 emit(Result.Failure(context.getString(R.string.remote_data_failed)))
             }
