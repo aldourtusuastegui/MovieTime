@@ -1,6 +1,6 @@
 package com.acsoft.movietime.feature_movies.domain.conversion
 
-import com.acsoft.movietime.feature_movies.data.model.MovieEntity
+import com.acsoft.movietime.feature_movies.data.model.PopularMovieEntity
 import com.acsoft.movietime.feature_movies.data.model.MovieListResponse
 import com.acsoft.movietime.feature_movies.data.model.MovieResponse
 import com.acsoft.movietime.feature_movies.data.model.RatedMovieEntity
@@ -32,9 +32,9 @@ object MoviesConverter {
     }
 
     //convert List of Movies to List of MovieEntity
-    fun mapListOfMoviesToListOfMoviesEntity(moviesList: List<Movie>): List<MovieEntity> {
+    fun mapListOfMoviesToListOfMoviesEntity(moviesList: List<Movie>): List<PopularMovieEntity> {
         return moviesList.map { movie ->
-            MovieEntity(
+            PopularMovieEntity(
                 id = movie.id,
                 title = movie.title,
                 posterPath = movie.posterPath,
@@ -44,8 +44,8 @@ object MoviesConverter {
     }
 
     //convert List of MovieEntity to List of Movies
-    fun mapListOfMoviesEntityToListOfMovies(movieEntityList: List<MovieEntity>): List<Movie> {
-        return movieEntityList.map { movieEntity ->
+    fun mapListOfMoviesEntityToListOfMovies(popularMovieEntityList: List<PopularMovieEntity>): List<Movie> {
+        return popularMovieEntityList.map { movieEntity ->
             Movie(
                 id = movieEntity.id,
                 title = movieEntity.title,

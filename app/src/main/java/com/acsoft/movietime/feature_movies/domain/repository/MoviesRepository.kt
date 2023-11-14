@@ -1,6 +1,6 @@
 package com.acsoft.movietime.feature_movies.domain.repository
 
-import com.acsoft.movietime.feature_movies.data.model.MovieEntity
+import com.acsoft.movietime.feature_movies.data.model.PopularMovieEntity
 import com.acsoft.movietime.feature_movies.data.model.MovieListResponse
 import com.acsoft.movietime.feature_movies.data.model.RatedMovieEntity
 import com.acsoft.movietime.feature_movies.data.model.RecommendationsMovieEntity
@@ -15,13 +15,13 @@ interface MoviesRepository {
 
     suspend fun getRecommendationsMoviesList(page: Int): Response<MovieListResponse>
 
-    fun getPopularMoviesListDb(): Flow<List<MovieEntity>>
+    fun getPopularMoviesListDb(): Flow<List<PopularMovieEntity>>
 
     fun getRatedMoviesListDb(): Flow<List<RatedMovieEntity>>
 
     fun getRecommendationsMoviesListDb(): Flow<List<RecommendationsMovieEntity>>
 
-    suspend fun insertPopularMoviesListDb(popularMoviesList : List<MovieEntity>)
+    suspend fun insertPopularMoviesListDb(popularMoviesList : List<PopularMovieEntity>)
 
     suspend fun insertRatedMoviesListDb(ratedMoviesList : List<RatedMovieEntity>)
 

@@ -1,7 +1,7 @@
 package com.acsoft.movietime.feature_movies.data.repository
 
 import com.acsoft.movietime.feature_movies.data.local.MoviesLocalDataSource
-import com.acsoft.movietime.feature_movies.data.model.MovieEntity
+import com.acsoft.movietime.feature_movies.data.model.PopularMovieEntity
 import com.acsoft.movietime.feature_movies.data.model.MovieListResponse
 import com.acsoft.movietime.feature_movies.data.model.RatedMovieEntity
 import com.acsoft.movietime.feature_movies.data.model.RecommendationsMovieEntity
@@ -30,7 +30,7 @@ class MoviesRepositoryImpl @Inject constructor(
         return moviesRemoteDataSource.getRecommendationsMoviesList(page)
     }
 
-    override fun getPopularMoviesListDb(): Flow<List<MovieEntity>> {
+    override fun getPopularMoviesListDb(): Flow<List<PopularMovieEntity>> {
         return moviesLocalDataSource.getPopularMoviesList()
     }
 
@@ -42,7 +42,7 @@ class MoviesRepositoryImpl @Inject constructor(
         return moviesLocalDataSource.getRecommendationsMoviesList()
     }
 
-    override suspend fun insertPopularMoviesListDb(popularMoviesList: List<MovieEntity>) {
+    override suspend fun insertPopularMoviesListDb(popularMoviesList: List<PopularMovieEntity>) {
         moviesLocalDataSource.insertPopularMoviesList(popularMoviesList)
     }
 

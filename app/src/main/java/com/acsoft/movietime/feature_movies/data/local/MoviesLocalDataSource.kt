@@ -1,6 +1,6 @@
 package com.acsoft.movietime.feature_movies.data.local
 
-import com.acsoft.movietime.feature_movies.data.model.MovieEntity
+import com.acsoft.movietime.feature_movies.data.model.PopularMovieEntity
 import com.acsoft.movietime.feature_movies.data.model.RatedMovieEntity
 import com.acsoft.movietime.feature_movies.data.model.RecommendationsMovieEntity
 import kotlinx.coroutines.flow.Flow
@@ -9,11 +9,11 @@ import javax.inject.Inject
 class MoviesLocalDataSource @Inject constructor(
     private val moviesDao: MoviesDao
 ) {
-    fun getPopularMoviesList() : Flow<List<MovieEntity>> {
+    fun getPopularMoviesList() : Flow<List<PopularMovieEntity>> {
         return moviesDao.getPopularMoviesList()
     }
 
-    fun insertPopularMoviesList(popularMoviesList: List<MovieEntity>) {
+    fun insertPopularMoviesList(popularMoviesList: List<PopularMovieEntity>) {
         return moviesDao.insertPopularMoviesList(popularMoviesList)
     }
 

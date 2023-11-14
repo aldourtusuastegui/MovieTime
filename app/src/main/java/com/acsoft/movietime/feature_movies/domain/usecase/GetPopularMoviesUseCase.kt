@@ -26,9 +26,9 @@ class GetPopularMoviesUseCase @Inject constructor(
             }
         } else {
             try {
-                val localDataResponse = moviesRepository.getPopularMoviesListDb()
-                localDataResponse.collect { moviesEntityList ->
-                    val moviesList = MoviesConverter.mapListOfMoviesEntityToListOfMovies(moviesEntityList)
+                val localPopularMoviesList = moviesRepository.getPopularMoviesListDb()
+                localPopularMoviesList.collect {
+                    val moviesList = MoviesConverter.mapListOfMoviesEntityToListOfMovies(it)
                     emit(Result.Success(MovieList(results = moviesList)))
                 }
             } catch (e: Exception) {
