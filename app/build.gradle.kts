@@ -60,8 +60,6 @@ dependencies {
 
     //Dagger Hilt
     implementation("com.google.dagger:hilt-android:2.48")
-    implementation("com.google.firebase:firebase-firestore:24.9.1")
-    implementation("com.google.firebase:firebase-storage:20.3.0")
     kapt("com.google.dagger:hilt-android-compiler:2.48")
 
     //Room
@@ -73,7 +71,9 @@ dependencies {
     //Glide
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
-    //maps
+    //firebase
+    implementation("com.google.firebase:firebase-firestore:24.9.1")
+    implementation("com.google.firebase:firebase-storage:20.3.0")
     implementation("com.google.android.gms:play-services-maps:18.1.0")
 
     testImplementation("junit:junit:4.13.2")

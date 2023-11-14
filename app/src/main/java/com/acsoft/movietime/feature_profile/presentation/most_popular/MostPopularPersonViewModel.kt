@@ -8,6 +8,7 @@ import com.acsoft.movietime.core.Result
 import com.acsoft.movietime.feature_profile.domain.entities.PopularPersonProfile
 import com.acsoft.movietime.feature_profile.domain.usecase.GetMostPopularPersonUseCase
 import com.acsoft.movietime.feature_profile.domain.usecase.InsertMostPopularPersonUseCase
+import com.acsoft.movietime.utils.AppConstants.AN_ERROR_OCCURRED
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -30,7 +31,7 @@ class MostPopularPersonViewModel @Inject constructor(
                     _mostPopularPerson.value = result
                 }
             } catch (e: Exception) {
-                _mostPopularPerson.value = Result.Failure("An unexpected error occurred: ${e.message}")
+                _mostPopularPerson.value = Result.Failure(AN_ERROR_OCCURRED)
             }
         }
     }
