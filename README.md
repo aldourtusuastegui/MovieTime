@@ -115,7 +115,7 @@ Da la posibilidad de seleccionar imagenes de la galeria del dispositivo, poder v
 - Se hace un intent para abrir la galeria.
 
 #### Location
-Hace uso de Google Maps 
+- Se agrego google maps al proyecto para poder mostrar el Mapa correctamente. 
 
 #### ¿Qúe me hubiese gustado mejorar? 
 
