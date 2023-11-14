@@ -22,7 +22,8 @@ class GetMostPopularPersonUseCase @Inject constructor(
                 val popularPerson = PopularPersonProfile(
                     name = profile?.name,
                     popularity = profile?.popularity,
-                    profilePath = profile?.profilePath
+                    profilePath = profile?.profilePath,
+                    knownForDepartment = profile?.knownForDepartment
                 )
                 emit(Result.Success(popularPerson))
             } else {
@@ -35,7 +36,8 @@ class GetMostPopularPersonUseCase @Inject constructor(
                 val data = PopularPersonProfile(
                     name = profile.name,
                     popularity = profile.popularity,
-                    profilePath = profile.profilePath
+                    profilePath = profile.profilePath,
+                    knownForDepartment = profile.knownForDepartment
                 )
                 emit(Result.Success(data))
             } else {

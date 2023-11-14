@@ -12,6 +12,13 @@
     <string name="rated_movies">Rated Movies</string>
     <string name="recommended_movies">Recommended Movies</string>
 
+    <!--Profile-->
+    <string name="name">Name</string>
+    <string name="popularity">Popularity</string>
+    <string name="Known_for_department">Known For Department</string>
+    <string name="popularity_points">%1$s points</string>
+
+
     <string name="select_image_from_gallery">select image from gallery</string>
     <string name="upload_image">Upload Image</string>
     <string name="image_upload_successfully">The image %1$s was successfully uploaded</string>

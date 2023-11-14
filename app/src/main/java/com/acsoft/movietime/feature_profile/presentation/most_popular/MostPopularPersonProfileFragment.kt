@@ -1,12 +1,12 @@
 package com.acsoft.movietime.feature_profile.presentation.most_popular
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import com.acsoft.movietime.R
 import com.acsoft.movietime.core.Result
 import com.acsoft.movietime.databinding.FragmentMostPopularPersonProfileBinding
 import com.acsoft.movietime.feature_profile.domain.entities.PopularPersonProfile
@@ -50,14 +50,14 @@ class MostPopularPersonProfileFragment : Fragment() {
     }
 
     private fun fillProfile(popularPersonProfile: PopularPersonProfile) {
-        Log.d("testing","is $popularPersonProfile")
         popularPersonProfile.apply {
             Glide.with(this@MostPopularPersonProfileFragment)
                 .load(AppConstants.IMAGE_URL.plus(this.profilePath))
                 .centerCrop()
                 .into(binding.ivProfile)
             binding.tvName.text = this.name
-            binding.tvPopularity.text = this.popularity.toString()
+            binding.tvPopularity.text = getString(R.string.popularity_points,this.popularity.toString())
+            binding.tvKnownForDepartment.text = this.knownForDepartment
         }
     }
 }

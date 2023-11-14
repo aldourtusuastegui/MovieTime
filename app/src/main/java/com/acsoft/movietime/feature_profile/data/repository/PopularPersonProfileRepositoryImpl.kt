@@ -34,7 +34,8 @@ class PopularPersonProfileRepositoryImpl @Inject constructor(
             id = popularPersonProfile.id,
             name = popularPersonProfile.name,
             popularity = popularPersonProfile.popularity,
-            profilePath = popularPersonProfile.profilePath
+            profilePath = popularPersonProfile.profilePath,
+            knownForDepartment = popularPersonProfile.knownForDepartment
         )
     }
 }
