@@ -10,7 +10,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="popular_movies">Popular Movies</string>
     <string name="rated_movies">Rated Movies</string>
-    <string name="recommended_movies">Rated Movies</string>
+    <string name="recommended_movies">Recommended Movies</string>
 
     <string name="select_image_from_gallery">select image from gallery</string>
     <string name="upload_image">Upload Image</string>
@@ -19,4 +19,10 @@
 
     <string name="API_KEY">AIzaSyCVvplxzO6G5faOejsIBhT887feSOAU5Pg</string>
     <string name="marker_sydney">Marker in Sydney</string>
+
+    <string name="remote_data_failed">it was not possible to obtain remote data</string>
+    <string name="local_data_failed">it was not possible to obtain local data</string>
+    <string name="unexpected_error_occurred">An unexpected error occurred</string>
+
+    <string name="loading">Loading</string>
 </resources>
