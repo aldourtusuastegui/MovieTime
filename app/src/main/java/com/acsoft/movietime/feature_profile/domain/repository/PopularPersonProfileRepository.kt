@@ -1,5 +1,6 @@
 package com.acsoft.movietime.feature_profile.domain.repository
 
+import com.acsoft.movietime.feature_profile.data.model.KnownForEntity
 import com.acsoft.movietime.feature_profile.data.model.ProfileEntity
 import com.acsoft.movietime.feature_profile.data.model.Results
 import com.acsoft.movietime.feature_profile.domain.entities.PopularPersonProfile
@@ -12,4 +13,9 @@ interface PopularPersonProfileRepository {
     fun getMostPopularPersonProfileDb() : Flow<ProfileEntity?>
 
     suspend fun insertMostPopularPersonProfileDb(popularPersonProfile: PopularPersonProfile)
+
+    fun getKnownForDb() : Flow<List<KnownForEntity>?>
+
+    suspend fun insertKnownForDb(knownForList: List<KnownForEntity>)
+
 }
