@@ -3,23 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_profile">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.acsoft.movietime.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_profile"
+        android:name="com.acsoft.movietime.feature_profile.presentation.most_popular.MostPopularPersonProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_most_popular_person_profile" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.acsoft.movietime.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_movies"
+        android:name="com.acsoft.movietime.feature_movies.presentation.MoviesFragment"
+        android:label="@string/title_movies"
+        tools:layout="@layout/fragment_movies" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.acsoft.movietime.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_images"
+        android:name="com.acsoft.movietime.feature_images.presentation.LoadImagesFragment"
+        android:label="@string/title_images"
+        tools:layout="@layout/fragment_load_images" />
+
+    <fragment
+        android:id="@+id/navigation_location"
+        android:name="com.acsoft.movietime.feature_location.presentation.MapFragment"
+        android:label="@string/title_location"
+        tools:layout="@layout/fragment_map" />
 </navigation>
